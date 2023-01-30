@@ -1,0 +1,46 @@
+
+  .logo {
+    height: 40px;
+  }
+  
+  .headerText {
+    margin: 0;
+  }
+  
+  .lrContainers {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .line {
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+  }
+  
+  .editRentalContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  .marginTable {
+    margin-top: 20px;
+  }
+  
+  .pure-table td {
+    padding: 10px;
+  }
+  
+  .formControlStyles {
+    box-sizing: border-box;
+  }
+  
+  .formInput {
+    width: 175px;
+  }
+  
+  textarea {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
