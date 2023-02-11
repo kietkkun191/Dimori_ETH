@@ -7,7 +7,14 @@ import bg from "../images/dimori-bg2.JPG";
 import { useSelector } from "react-redux";
 import Account from "../components/Account";
 import RentalsMap from "../components/RentalsMap";
-import { Button, CircularProgress, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
 import DimoriSmartContract from "../artifacts/contracts/DimoriMain.sol/DimoriMain.json";
 import { contractAddress, networkDeployedTo } from "../utils/contracts-config";
@@ -31,31 +38,30 @@ const RenterCancelledBookings = () => {
 
     const myRentals = [];
     let bookings = await DimoriContract.getRentalBookings();
-    let _mybookings = bookings.filter((b) => b[2] == data.account 
-                                            && b[6] == true
-                                            && b[7] == false
-                                            && b[8] == false
-                                        );
+    let _mybookings = bookings.filter(
+      (b) =>
+        b[2] == data.account && b[6] == true && b[7] == false && b[8] == false
+    );
     await Promise.all(
-        _mybookings.map(async (r) =>{
-            let _rentals = await DimoriContract.getRentalInfo(r[1]);
-            
-            if (_rentals.length !== 0) {
-            ;
-            const item = {
-              id: Number(r[0]),
-              name: _rentals[2],
-              city: _rentals[3],
-              theme: _rentals[4],
-              address: _rentals[5],
-              imgUrl: _rentals[9],
-              startDate: new Date(Number(r[4]) * 1000),
-              endDate: new Date(Number(r[5]) * 1000),
-              price: utils.formatUnits(_rentals[11], "ether"),
-            };
-            myRentals.push(item);
-        }})
-    )
+      _mybookings.map(async (r) => {
+        let _rentals = await DimoriContract.getRentalInfo(r[1]);
+
+        if (_rentals.length !== 0) {
+          const item = {
+            id: Number(r[0]),
+            name: _rentals[2],
+            city: _rentals[3],
+            theme: _rentals[4],
+            address: _rentals[5],
+            imgUrl: _rentals[9],
+            startDate: new Date(Number(r[4]) * 1000),
+            endDate: new Date(Number(r[5]) * 1000),
+            price: utils.formatUnits(_rentals[11], "ether"),
+          };
+          myRentals.push(item);
+        }
+      })
+    );
 
     setRentalsList(myRentals);
     let rentals = await DimoriContract.getRentalInfo(_mybookings[0][1]);
@@ -64,9 +70,7 @@ const RenterCancelledBookings = () => {
         lat: Number(r[6]),
         lng: Number(r[7]),
       };
-      
     });
-    ;
     setCoordinates(cords);
   };
 
@@ -96,7 +100,6 @@ const RenterCancelledBookings = () => {
             DimoriSmartContract.abi,
             signer
           );
-          ;
           const listingFee = DimoriContract.callStatic.listingFee();
 
           const add_tx = await DimoriContract.confirmCancelBooking(
@@ -125,44 +128,48 @@ const RenterCancelledBookings = () => {
 
   return (
     <>
-        <div className="topBanner">
-          <div>
-            <Link to="/">
-              <img
-                className="logo"
-                src={logo}
-                alt="logo"
-                style={{ height: "auto" }}
-              ></img>
-            </Link>
-          </div>
-          <div className="lrContainers">
-            <Account />
-          </div>
+      <div className="topBanner">
+        <div>
+          <Link to="/">
+            <img
+              className="logo"
+              src={logo}
+              alt="logo"
+              style={{ height: "auto" }}
+            ></img>
+          </Link>
         </div>
-
-        <hr className="line" />
-        <div className="rentalsContent">
-        <div className="rentalsContentR">
-          <div style={{ textAlign: "center", paddingTop: "3%" }}>
-                <p className="rentalTitle">Rentals on maps</p>
-              </div>
-            <RentalsMap locations={coordinates} setHighLight={setHighLight} style={{border: '2px dotted red'}} />
+        <div className="lrContainers">
+          <Account />
+        </div>
+      </div>
+      <div className="rentalsContent">
+        <div className="rentalsContentL">
+          <div style={{ textAlign: "center" }}>
+            <p className="rentalTitle">Rentals on maps</p>
           </div>
-          <div className="rentalsContentR">
-            {rentalsList.length !== 0 ? (
-              rentalsList.map((e, i) => {
-                return (
-                  <>
-                    <hr className="line2" />
-                    <br/>
-                    <div
-                      className={highLight == i ? "rentalDivH " : "rentalDiv"}
-                      key={i}
-                    >
-                      <img className="rentalImg" src={e.imgUrl}></img>
-                      <div className="rentalInfo">
-                        <div className="rentalTitle">{e.name}</div>
+          <RentalsMap
+            locations={coordinates}
+            setHighLight={setHighLight}
+            style={{ border: "2px dotted azure" }}
+          />
+        </div>
+        <div className="rentalsContentR">
+          {rentalsList.length !== 0 ? (
+            rentalsList.map((e, i) => {
+              return (
+                <>
+                  <br />
+                  <div
+                    className={highLight == i ? "rentalDivH " : "rentalDiv"}
+                    key={i}
+                  >
+                    <div className="divScheduleImg">
+                      <img className="scheduleImg" src={e.imgUrl}></img>
+                    </div>
+                    <div className="rentalInfo">
+                      <div className="rentalTitle">{e.name.toUpperCase()}</div>
+                      <div className="rentalInformation">
                         <div className="rentalDesc">ở in {e.city} á nè</div>
                         <div className="rentalDesc">
                           màu (theme) {e.theme} thấy được không
@@ -182,31 +189,38 @@ const RenterCancelledBookings = () => {
                             day: "2-digit",
                           })} `}
                         </div>
-                        <br />
-                        <br />
-                        <div className="price">{e.price}$</div>
-                        <div style={{ textAlign: "center", paddingTop: "15px" }}>
-                          <a className="btn btn-outline-danger" 
-                            href={"/#/confirm-cancel-booking?id="  + e.id} 
-                            role="button"
-                            // onClick={alert("Comming Soon!")}
-                            >
-                            Confirm Cancel Booking
-                          </a>
-                        </div>
+                      </div>
+
+                      <br />
+                      <div className="price">{e.price}$</div>
+                      <div style={{ textAlign: "center", paddingTop: "15px" }}>
+                        <a
+                          className="btn btn-outline-danger"
+                          href={"/#/confirm-cancel-booking?id=" + e.id}
+                          role="button"
+                          // onClick={alert("Comming Soon!")}
+                        >
+                          Confirm Cancel Booking
+                        </a>
                       </div>
                     </div>
-                  </>
-                );
-              })
-            ) : (
-              <div style={{ textAlign: "center", paddingTop: "30%", color:"burlywood" }}>
-                <p>You have no reservation yet</p>
-              </div>
-            )}
-          </div>
-          
+                  </div>
+                </>
+              );
+            })
+          ) : (
+            <div
+              style={{
+                textAlign: "center",
+                paddingTop: "30%",
+                color: "burlywood",
+              }}
+            >
+              <p style={{ color: "whitesmoke" }}>You have no reservation yet</p>
+            </div>
+          )}
         </div>
+      </div>
     </>
   );
 };

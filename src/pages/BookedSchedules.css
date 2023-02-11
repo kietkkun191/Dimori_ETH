@@ -21,18 +21,7 @@
 .headerText{
     text-align: "center";
     font-family:"Roboto, Helvetica, sans-serif";
-    color: wheat;
-}
-
-.rentalsContentL {
-    width: 50%;
-    padding: 30px;
-    height: calc(100vh - 150px);
-    overflow: scroll;
-}
-
-.rentalsContentR {
-    width: 50%;
+    color: azure;
 }
 
 .rentalDiv {
@@ -58,9 +47,17 @@
     }
 }
 
-.rentalImg {
-    height: 200px;
+.divScheduleImg{
+    height: 300px;
     width: 300px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.scheduleImg {
+    height: 100%;
+    width: 100%;
     border-radius: 20px;
     margin-right: 20px;
 }
@@ -70,10 +67,18 @@
     width: 100%;
 }
 
+.rentalInformation{
+    font-size: 18px;
+    background-color:rgba(0, 0, 0, 0.4) ;
+    box-shadow: rgba(0, 0, 0, 1) 5px 15px 15px;
+    color: azure;
+    border-radius: 10px;
+}
+
 .rentalTitle {
     font-size: 23px;
     margin-bottom: 15px;
-    ;
+    color: azure;
 }
 
 .rentalDesc {
@@ -81,11 +86,12 @@
 }
 
 .bottomButton {
-    margin-top: 50px;
-    justify-content: space-between;
+    margin-top: 30px;
     display: flex;
     width: 100%;
     align-items: center;
+    justify-content: end;
+    padding: 5px;
 }
 
 .price {

@@ -9,6 +9,7 @@ import bg from "../images/dimori-bg1.JPG";
 
 import DimoriSmartContract from "../artifacts/contracts/DimoriMain.sol/DimoriMain.json";
 import { contractAddress } from "../utils/contracts-config";
+import { Form } from "react-bootstrap";
 
 const YourRentals = () => {
   const data = useSelector((state) => state.blockchain.value);
@@ -47,95 +48,99 @@ const YourRentals = () => {
 
   return (
     <>
-        <div className="topBanner">
-          <div>
-            <Link to="/">
-              <img
-                className="logo"
-                src={logo}
-                alt="logo"
-                style={{ height: "auto" }}
-              ></img>
-            </Link>
-          </div>
-          <div>
-            <h2 class="headerText">Your Rentals</h2>
-          </div>
-          <div className="lrContainers">
-            <Account />
-          </div>
-        </div>
-        <hr className="line" />
-        <div className="rentalsContent" class="newContainer">
-          <br/>
+      <div className="topBanner">
         <div>
-          <a className="btn btn-outline-primary" href={"/#/add-rental"} role="button">
-              Add rental
-            </a>
-            &nbsp; &nbsp; 
-            <a className="btn btn-outline-success" href={"/#/renter-cancelled-booking"} role="button">
-              Cancelled Bookings List
-            </a>
+          <Link to="/">
+            <img
+              className="logo"
+              src={logo}
+              alt="logo"
+              style={{ height: "auto" }}
+            ></img>
+          </Link>
         </div>
-          {propertiesList.length !== 0 ? (
-            propertiesList.map((e, i) => {
-              return (
-                <>
-                  <hr className="line2" />
-                  <br/>
-                  <div className="rentalDiv" key={i}>
-                    <img className="rentalImg" src={e.imgUrl}></img>
+        <div>
+          <h2 class="headerText">Your Rentals</h2>
+        </div>
+        <div className="lrContainers">
+          <Account />
+        </div>
+      </div>
+      <div className="rentalsContent" class="newContainer">
+        {propertiesList.length !== 0 ? (
+          propertiesList.map((e, i) => {
+            return (
+              <>
+                <br />
+                <div class="itemDiv" key={i}>
+                  <div className="rentalDiv">
+                    <div className="imgDiv">
+                      <img className="rentalImg" src={e.imgUrl}></img>
+                    </div>
+
                     <div className="rentalInfo">
-                      <div className="rentalTitle">{e.name}</div>
+                      <div className="rentalTitle">{e.name.toUpperCase()}</div>
+                      <div className="rentalInformation">
                       <table>
                         <tr>
-                          <td>City : </td>
-                          &nbsp; &nbsp;
                           <td>{e.city}</td>
-                        </tr>
-                        <tr>
-                          <td>Theme : </td>
-                          &nbsp; &nbsp;
                           <td>{e.theme} </td>
-                        </tr>
-                        <tr>
-                          <td>Address : </td>
-                          &nbsp; &nbsp;
                           <td>{e.address}</td>
                         </tr>
                         <tr>
-                          <td>Description : </td>
-                          &nbsp; &nbsp;
-                          <td>{e.description}</td>
+                          <td colSpan={3}>
+                            {e.description.length > 255
+                              ? e.description.substring(0, 255) + " ..."
+                              : e.description}
+                          </td>
                         </tr>
                       </table>
-                      <div className="rentalDesc"></div>
-                      <div className="price">price per day : {e.price}$</div>
+                      </div>
                       <br></br>
-                      <div>
-                        <a className="btn btn-outline-secondary" href={"/#/edit-rental?id=" + e.id} role="button">
+                      <div className="price">price per day : {e.price}$</div>
+                      <div class="button-area">
+                        <a
+                          className="btn btn-secondary"
+                          href={"/#/edit-rental?id=" + e.id}
+                          role="button"
+                        >
                           Edit rental
                         </a>
-                        &nbsp; &nbsp; 
-                        <a className="btn btn-outline-danger" href={"/#/remove-rental?id=" + e.id} role="button">
+                        &nbsp;
+                        <a
+                          className="btn btn-danger"
+                          href={"/#/remove-rental?id=" + e.id}
+                          role="button"
+                        >
                           Remove rental
                         </a>
-                        &nbsp; &nbsp; 
-                        <a className="btn btn-outline-dark" href={"/#/renter-booking-schedules?id=" + e.id} role="button">
+                        &nbsp;
+                        <a
+                          className="btn btn-dark"
+                          href={"/#/renter-booking-schedules?id=" + e.id}
+                          role="button"
+                        >
                           Booking Schedules
                         </a>
                       </div>
                     </div>
                   </div>
-                </>
-              );
-            })
-          ) : (
-            <div style={{ textAlign: "center", paddingTop: "30%" }}>
-              <p>You have no rentals listed</p>
-            </div>
-          )}
-        </div>
+                </div>
+              </>
+            );
+          })
+        ) : (
+          <div
+            style={{
+              textAlign: "center",
+              paddingTop: "10%",
+              paddingBottom: "10%",
+            }}
+          >
+            <p style={{ color: "whitesmoke" }}>You have no rentals listed</p>
+          </div>
+        )}
+      </div>
     </>
   );
 };

@@ -12,6 +12,7 @@
 .searchFields{
     position: absolute !important;
     bottom: 10px !important;
+    box-shadow: rgba(0, 0, 0, 1) 5px 15px 15px;
 }
 .containerGradinet {
     background-image: linear-gradient(rgb(0, 0, 0, 0.75), rgb(0, 0, 0, 0));
@@ -41,15 +42,14 @@
 }
 
 .tabContent {
-    width: 100%;
-    height: 100px;
+    width: 90%;
     display: flex;
     justify-content: center;
     padding-top: 50px;
 }
 
 .searchFields {
-    width: 900px;
+    width: 65%;
     background-color: white;
     height: 70px;
     border-radius: 100px;

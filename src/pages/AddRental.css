@@ -1,3 +1,4 @@
+
 .searchReminder {
     width: 400px;
     border: 1.5px solid rgb(242, 242, 242);
@@ -12,7 +13,7 @@
 }
 
 .marginTable{
-    margin:0 15% 0 15%;
+    align-items: center;
 }
 
 .filter {
@@ -24,7 +25,7 @@
 .headerText{
     text-align: center;
     font-family:"Roboto, Helvetica, sans-serif";
-    color: wheat;
+    color: azure;
 }
 
 body{
@@ -75,7 +76,9 @@ body{
 
 .addRentalContent {
     display: flex;
-    justify-content: start;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
     height: calc(100vh - 135px);
 }
 
@@ -166,5 +169,20 @@ body{
   }
   .MuiInputLabel-root {
     color:white;
-    background-color: #dddddd;
   }
+  
+  .form-control {
+    width: 100% !important;
+    background: rgba(0, 0, 0, 0.35) !important;
+    color: bisque !important;
+    border-radius:25px !important;
+    border: none !important; 
+  }
+
+  .form-control::placeholder {
+    opacity: 0.9 !important;
+    color: azure !important;
+}
+  
+
+  

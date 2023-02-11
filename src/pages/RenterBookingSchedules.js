@@ -98,7 +98,7 @@ const RenterBookingSchedules = () => {
           <div style={{ textAlign: "center", paddingTop: "3%" }}>
             <p className="rentalTitle">Rentals on maps</p>
           </div>
-            <RentalsMap locations={coordinates} setHighLight={setHighLight} style={{border: '2px dotted red'}} />
+            <RentalsMap locations={coordinates} setHighLight={setHighLight} style={{border: '2px dotted azure'}} />
           </div>
           <div className="rentalsContentR">
             {rentalsList.length !== 0 ? (

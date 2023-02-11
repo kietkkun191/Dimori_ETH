@@ -9,8 +9,8 @@
     padding-left: 30px;
     padding-right: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: azure;
 }
-
 
 .filter {
     font-size: 14px;
@@ -30,11 +30,12 @@ body{
 
 .newContainer{
     width: 100%;
-    padding: 0 15% 5% 15%;
-    background-color: rgba(255, 355, 255, 0.2);
-    backdrop-filter: blur(10px);
+    padding: 0 10% 5% 10%;
+    /* background-color: rgba(255, 355, 255, 0.2);
+    backdrop-filter: blur(10px); */
     font-size: 20px;
     display: inline-block;
+    box-sizing: border-box;
 }
 
 .btn-primary,
@@ -60,7 +61,7 @@ body{
 
 .line {
     border-top: 1px solid rgb(53, 49, 49);
-    margin-bottom: 10px;
+    margin: 0%;
 }
 
 .line2 {
@@ -72,17 +73,6 @@ body{
     display: flex;
     justify-content: start;
     height: calc(100vh - 135px);
-}
-
-.rentalsContentL {
-    width: 50%;
-    padding: 30px;
-    height: calc(100vh - 150px);
-    overflow: scroll;
-}
-
-.rentalsContentR {
-    width: 50%;
 }
 
 .rentalDiv {
@@ -108,10 +98,18 @@ body{
     }
 }
 
+.imgDiv{
+    height: 320px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
 .rentalImg {
-    height: 250px;
-    width: 300px;
-    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
     margin-right: 20px;
 }
 
@@ -121,33 +119,34 @@ body{
 }
 
 .rentalTitle {
-    font-size: 35px;
-    margin-bottom: 15px;
+    font-size: 20px;
     font-family: "ui-monospace";
 }
 
 .rentalDesc {
-    color: gray;
+    font-size: 15px;
+    color: #2b2623;
     padding: 1% 5% 0 5%;
 }
 
 .bottomButton {
     margin-top: 30px;
-    justify-content: space-between;
     display: flex;
     width: 100%;
     align-items: center;
+    justify-content: end;
+    padding: 5px;
 }
 
 .price {
     display: flex;
     justify-content: end;
     gap: 5px;
-    color: #808080;
-    font-size: 25px;
+    color: bisque;
+    font-size: 12px;
 }
 .headerText{
     text-align: "center";
     font-family:"Roboto, Helvetica, sans-serif";
-    color: wheat;
+    color: azure;
 }

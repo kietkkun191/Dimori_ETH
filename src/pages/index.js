@@ -10,3 +10,4 @@ export { default as UserCancelledBookings } from './UserCancelledBookings';
 export { default as RenterCancelledBookings } from './RenterCancelledBookings';
 export { default as ConfirmCancelBooking } from './ConfirmCancelBooking';
 export { default as RenterBookingSchedules } from './RenterBookingSchedules';
+export { default as Footer } from "./Footer";

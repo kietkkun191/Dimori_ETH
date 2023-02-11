@@ -13,8 +13,8 @@
 
 .headerText{
     text-align: "center";
-    font-family:"Roboto, Helvetica, sans-serif";
-    color: wheat;
+    font-family:"Segoe Script";
+    color: azure;
 }
 
 
@@ -28,15 +28,6 @@
     background-color: #00afd1;
     padding: 7px;
     border-radius: 50%;
-}
-
-.newContainer{
-    width: 100%;
-    padding: 0 15% 5% 15%;
-    background-color: rgba(255, 355, 255, 0.1);
-    backdrop-filter: blur(10px);
-    font-size: 20px;
-    display: inline-block;
 }
 
 .btn-primary,
@@ -62,7 +53,6 @@
 
 .line {
     border-top: 1px solid rgb(53, 49, 49);
-    margin-bottom: 10px;
 }
 
 .line2 {
@@ -77,19 +67,23 @@
 }
 
 .rentalsContentL {
+    display: left;
     width: 50%;
-    padding: 30px;
-    height: calc(100vh - 150px);
-    overflow: scroll;
 }
 
 .rentalsContentR {
+    display: right;
     width: 50%;
+    height: 95%;
+    overflow: scroll;
+    background-color:rgba(0, 0, 0, 0.4) ;
+    box-shadow: rgba(0, 0, 0, 0.8) 7px 21px 21px;
 }
 
 .rentalDiv {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    padding: 5px;
 }
 
 .rentalDivH {
@@ -110,10 +104,25 @@
     }
 }
 
+.itemDiv{
+    background-color:rgba(0, 0, 0, 0.2) ;
+    box-shadow: rgba(0, 0, 0, 0.6) 7px 21px 21px;
+    border-radius: 15px;
+}
+
+.imgDiv{
+    height: 320px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+
 .rentalImg {
-    height: 250px;
-    width: 300px;
-    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
     margin-right: 20px;
 }
 
@@ -123,13 +132,21 @@
 }
 
 .rentalTitle {
-    font-size: 35px;
-    margin-bottom: 15px;
+    font-size: 27px;
     font-family: "ui-monospace";
+    color: azure;
+}
+
+.rentalInformation{
+    font-size: 18px;
+    background-color:rgba(0, 0, 0, 0.4) ;
+    box-shadow: rgba(0, 0, 0, 1) 5px 15px 15px;
+    color: azure;
+    border-radius: 10px;
 }
 
 .rentalDesc {
-    color: whitesmoke;
+    color: azure;
     padding: 1% 5% 0 5%;
 }
 
@@ -140,11 +157,15 @@
     width: 100%;
     align-items: center;
 }
-
+.button-area{
+    display: flex;
+    justify-content: end;
+    padding: 5px;
+}
 .price {
     display: flex;
     justify-content: end;
     gap: 5px;
-    color: #808080;
+    color: bisque;
     font-size: 12px;
 }
