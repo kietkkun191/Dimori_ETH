@@ -5,7 +5,7 @@ const { verify } = require('../utils/verify')
 
 const MATIC_NETWORK = ["https://rpc-mumbai.matic.today/", "mumbai"]
 const LOCAL_NETWORK = ["localhost", "ganache"]
-var NETWORKS = LOCAL_NETWORK
+var NETWORKS = MATIC_NETWORK
 
 async function deployMock() {
   const DECIMALS = "8"

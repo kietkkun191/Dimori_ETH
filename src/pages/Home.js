@@ -62,8 +62,8 @@ const Home = () => {
                 }}
               />
             </div>
-            <hr className="line1"/>
             <div className="vl" />
+            <hr className="line1"/>
             <div className="inputs">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker

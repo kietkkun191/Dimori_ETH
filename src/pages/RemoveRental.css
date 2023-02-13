@@ -46,13 +46,16 @@
     padding: 10px 20px;
   }
   body {
-    background-image: url("../images/dimori-bg11.jpg");
+    display:"flex";
+    background-image: url("../images/dimori-bg12.jpg");
     background-size: cover;
     background-attachment: fixed;
+    height: 100%;
   }
   
   html {
     background-size: cover;
+    height: 100%;
   }
 
   .btn-outline-secondary {

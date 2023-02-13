@@ -9,6 +9,12 @@
 .randomLocation{
     margin-top: 15px !important;
 }
+.line1{
+    height:100px;
+    border-width:0;
+    color:gray;
+    background-color:gray
+}
 .searchFields{
     position: absolute !important;
     bottom: 10px !important;
@@ -49,7 +55,7 @@
 }
 
 .searchFields {
-    width: 65%;
+    width: 800px;
     background-color: white;
     height: 70px;
     border-radius: 100px;
@@ -57,6 +63,7 @@
     justify-content: space-evenly;
     align-items: center;
     padding-left: 30px;
+    top: 5% !important
 }
 
 .tabs {
@@ -108,6 +115,8 @@
     color: white;
     width: 500px;
     padding-left: 100px;
+    position: fixed;
+    top: 50%;
 }
 
 .title {
