@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./RenterCancelledBookings.css";
+import "./style/BookedSchedules.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ethers, utils } from "ethers";
 import logo from "../images/dimori-logo.png";
@@ -146,7 +146,7 @@ const RenterCancelledBookings = () => {
       <div className="rentalsContent">
         <div className="rentalsContentL">
           <div style={{ textAlign: "center" }}>
-            <p className="rentalTitle">Rentals on maps</p>
+            <p className="headerText">Rentals on maps</p>
           </div>
           <RentalsMap
             locations={coordinates}

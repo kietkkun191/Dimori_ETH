@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./BookedSchedules.css";
+import "./style/BookedSchedules.css";
 import { Link } from "react-router-dom";
 import { ethers, utils } from "ethers";
 import logo from "../images/dimori-logo.png";
@@ -26,48 +26,42 @@ const BookedSchedules = () => {
       DimoriSmartContract.abi,
       signer
     );
-
-    const rentals = await DimoriContract.getRentals();
-    const myRentals = [];
+    const _bookedSchedules = await DimoriContract
+                              .getRentalBookings();
+    const _bookedSchedulesFiltered = _bookedSchedules.filter((b) => b[3] == data.account
+                                                                && b[6] == false
+                                                                && b[7] == false
+                                                                && b[8] == false);
+    const _bookedList = [];
     await Promise.all(
-      rentals.map(async (r) => {
-        let _rentalBookings = await DimoriContract.getRentalBookings();
-
-        let myBookings = _rentalBookings.filter(
-          (b) =>
-            b[3] == data.account &&
-            b[6] == false &&
-            b[7] == false &&
-            b[8] == false
-        );
-
-        console.log(_rentalBookings);
-
-        if (myBookings.length !== 0) {
-          const latestBook = myBookings[0];
+      _bookedSchedulesFiltered.map(async (r) => {
+        let rental = await DimoriContract.getRentalInfo(parseInt(r[1]));
+        // console.log(rental);
+        if(rental.length !== 0){
           const item = {
-            id: Number(latestBook[0]),
-            name: r[2],
-            city: r[3],
-            theme: r[4],
-            address: r[5],
-            imgUrl: r[9],
-            startDate: new Date(Number(latestBook[4]) * 1000),
-            endDate: new Date(Number(latestBook[5]) * 1000),
-            price: utils.formatUnits(r[11], "ether"),
+            id: Number(r[0]),
+            name: rental[2],
+            city: rental[3],
+            theme: rental[4],
+            address: rental[5],
+            imgUrl: rental[9],
+            startDate: new Date(Number(r[4]) * 1000),
+            endDate: new Date(Number(r[5]) * 1000),
+            price: utils.formatUnits(rental[11], "ether"),
           };
-          myRentals.push(item);
+          _bookedList.push(item);
         }
       })
-    );
-    setRentalsList(myRentals);
-    let cords = rentals.map((r) => {
-      return {
-        lat: Number(r[6]),
-        lng: Number(r[7]),
-      };
-    });
-    setCoordinates(cords);
+    )
+    setRentalsList(_bookedList);
+    // let cords = _bookedSchedulesFiltered.map((r) => {
+    //   let rental = DimoriContract.getRentalInfo(parseInt(r[1]));
+    //   return {
+    //     lat: Number(rental[6]),
+    //     lng: Number(rental[7]),
+    //   };
+    // });
+    // setCoordinates(cords);
   };
 
   useEffect(() => {
@@ -94,7 +88,7 @@ const BookedSchedules = () => {
       <div className="rentalsContent">
         <div className="rentalsContentL">
           <div style={{ textAlign: "center" }}>
-            <p className="rentalTitle">Rentals on maps</p>
+            <p className="headerText">Rentals on maps</p>
           </div>
           <RentalsMap
             locations={coordinates}

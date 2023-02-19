@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./EditRental.css";
+import "./style/EditRental.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import { ethers, utils } from "ethers";
@@ -25,8 +25,7 @@ import DimoriSmartContract from "../artifacts/contracts/DimoriMain.sol/DimoriMai
 import { contractAddress, networkDeployedTo } from "../utils/contracts-config";
 import networksMap from "../utils/networksMap.json";
 import { margin } from "@mui/system";
-// import { getValue } from "@testing-library/user-event/dist/utils";
-// import { url } from "inspector";
+
 const client = require("ipfs-http-client");
 
 const projectId = "2HrcvAMNAkZmAGwQO6CfyZPWAw0"; // <---------- your Infura Project ID
@@ -70,7 +69,7 @@ const DimoriContract = new ethers.Contract(
   signer
 );
 
-const EditRental = () => {
+const EditRental = ({ rental }) => {
   let navigate = useNavigate();
 
   const data = useSelector((state) => state.blockchain.value);
@@ -79,20 +78,16 @@ const EditRental = () => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
-  const url = new URL(document.URL);
-  const hash = url.hash;
-  const id = hash.substring(hash.lastIndexOf("?") + 4, hash.length);
-
   const [formInput, setFormInput] = useState({
-    name: "",
-    city: "",
-    theme: "",
-    contactAddress: "",
-    latitude: "",
-    longitude: "",
-    description: "",
-    numberGuests: 0,
-    pricePerDay: 0,
+    name: rental.name,
+    city: rental.city,
+    theme: rental.theme,
+    contactAddress: rental.address,
+    latitude: rental.latitude,
+    longitude: rental.longitude,
+    description: rental.description,
+    numberGuests: parseInt(rental.maxGuests),
+    pricePerDay: parseInt(rental.price),
   });
 
   const getInitialState = () => {
@@ -101,25 +96,6 @@ const EditRental = () => {
   };
 
   const [value, setValue] = useState(getInitialState);
-
-  const getRental = async () => {
-    const user_properties = await DimoriContract.getRentalInfo(id);
-    return user_properties;
-  };
-  //   const a = getRental();
-
-  //   a.then(function(result) {
-  //     setFormInput({
-  //       name: result[2],
-  //       city: result[3],
-  //       contactAddress: result[5],
-  //       latitude: result[6],
-  //       longitude: result[7],
-  //       description: result[8],
-  //       numberGuests: result[10],
-  //       pricePerDay: result[11],
-  //     });
-  //  });
 
   const getImage = async (e) => {
     e.preventDefault();
@@ -137,6 +113,8 @@ const EditRental = () => {
     }
   };
 
+  console.log(imagePreview);
+
   const edit = async () => {
     if (data.network === networksMap[networkDeployedTo]) {
       if (image !== undefined && window.ethereum !== undefined) {
@@ -148,7 +126,7 @@ const EditRental = () => {
           const imageURI = ipfsBaseUrl + addedFile.path;
 
           const add_tx = await DimoriContract.editRental(
-            parseInt(id),
+            parseInt(rental.id),
             formInput.name,
             formInput.city,
             value,
@@ -156,9 +134,9 @@ const EditRental = () => {
             formInput.latitude,
             formInput.longitude,
             formInput.description,
-            imageURI,
+            imageURI == null ? rental.imgUrl : imageURI,
             formInput.numberGuests,
-            utils.parseEther(formInput.pricePerDay, "ether"),
+            utils.parseEther(formInput.pricePerDay.toString(), "ether"),
             { value: listingFee }
           );
           await add_tx.wait();
@@ -184,22 +162,6 @@ const EditRental = () => {
 
   return (
     <>
-      <div className="topBanner">
-        <div>
-          <Link to="/">
-            <img
-              className="logo"
-              src={logo}
-              alt="logo"
-              style={{ height: "auto" }}
-            ></img>
-          </Link>
-        </div>
-        <h2 class="headerText">Edit your Rental</h2>
-        <div className="lrContainers">
-          <Account />
-        </div>
-      </div>
       <div className="editRentalContent">
         <table className="pure-table pure-table-horizontal marginTable">
           <br />
@@ -233,9 +195,10 @@ const EditRental = () => {
           <br />
           <tr>
             <td colSpan={2}>
-              <CustomFormControl 
-                variant="standard" 
-                sx={{ m: 1, minWidth: 900 }}>
+              <CustomFormControl
+                variant="standard"
+                sx={{ m: 1, minWidth: 900 }}
+              >
                 <InputLabel id="theme-standard-label" style={{ width: 500 }}>
                   Tụi bây có chi vui (Theme)
                 </InputLabel>
@@ -367,8 +330,17 @@ const EditRental = () => {
           <br />
           <tr>
             <td colSpan={2}>
-              {imagePreview && (
-                <div style={{ textAlign: "center" }}>
+              {imagePreview == null ? (
+                <div style={{ display:"flex", justifyContent:"center" }}>
+                  <img
+                    className="rounded mt-4"
+                    width="350"
+                    src={rental.imgUrl}
+                    style={{ margin: "0 15% 0 15%", display: "block" }}
+                  />
+                </div>
+              ) : (
+                <div style={{ display:"flex", justifyContent:"center" }}>
                   <img
                     className="rounded mt-4"
                     width="350"

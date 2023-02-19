@@ -10,7 +10,8 @@ import {
   UserCancelledBookings,
   RenterCancelledBookings,
   ConfirmCancelBooking,
-  Footer
+  Footer,
+  RentalDetail
 } from "./pages";
 import { Route, Routes, HashRouter } from "react-router-dom";
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/your-rentals" element={<YourRentals />} />
             <Route path="/edit-rental" element={<EditRental />} />
             <Route path="/remove-rental" element={<RemoveRental />} />
+            <Route path="/rental-detail" element={<RentalDetail />} />
             <Route path="/cancel-booking" element={<CancelBooking />} />
             <Route
               path="/user-cancelled-booking"

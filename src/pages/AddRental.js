@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./AddRental.css";
+import "./style/AddRental.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import { ethers, utils } from "ethers";
@@ -120,7 +120,6 @@ const AddRental = () => {
           //handle images
           const addedFile = await ipfsClient.add(image);
           const imageURI = ipfsBaseUrl + addedFile.path;
-          debugger;
           const add_tx = await DimoriContract.addRental(
             formInput.name,
             formInput.city,
@@ -173,6 +172,8 @@ const AddRental = () => {
           <Account />
         </div>
       </div>
+      <hr className="line1"/>
+      <div className="RentalContent">
       <div className="addRentalContent" style={{ alignContent: "center" }}>
         <table className="pure-table pure-table-horizontal marginTable">
           <tr>
@@ -342,6 +343,7 @@ const AddRental = () => {
             </td>
           </tr>
         </table>
+        </div>
       </div>
     </>
   );

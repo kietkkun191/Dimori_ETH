@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./Rentals.css";
+import "./style/Rentals.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ethers, utils } from "ethers";
 import { useLocation } from "react-router";
 import logo from "../images/dimori-logo.png";
-import bg from "../images/dimori-bg1.JPG";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, CircularProgress } from "@mui/material";
 import Account from "../components/Account";

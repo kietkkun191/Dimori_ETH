@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./BookedSchedules.css";
+import "./style/BookedSchedules.css";
 import { Link } from "react-router-dom";
 import { ethers, utils } from "ethers";
 import logo from "../images/dimori-logo.png";
@@ -96,7 +96,7 @@ const RenterBookingSchedules = () => {
         <div className="rentalsContent">
         <div className="rentalsContentR">
           <div style={{ textAlign: "center", paddingTop: "3%" }}>
-            <p className="rentalTitle">Rentals on maps</p>
+            <p className="headerText">Rentals on maps</p>
           </div>
             <RentalsMap locations={coordinates} setHighLight={setHighLight} style={{border: '2px dotted azure'}} />
           </div>

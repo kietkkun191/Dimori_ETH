@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import "./Home.css";
+import "./style/Home.css";
 import Account from "../components/Account";
 import { Link } from "react-router-dom";
 import bg from "../images/dimori-bg1.JPG";
@@ -63,7 +63,6 @@ const Home = () => {
               />
             </div>
             <div className="vl" />
-            <hr className="line1"/>
             <div className="inputs">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker

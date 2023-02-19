@@ -5,6 +5,7 @@ export { default as AddRental } from './AddRental';
 export { default as YourRentals } from './YourRentals';
 export { default as EditRental } from './EditRental';
 export { default as RemoveRental } from './RemoveRental';
+export { default as RentalDetail } from './RentalDetail';
 export { default as CancelBooking } from './CancelBooking';
 export { default as UserCancelledBookings } from './UserCancelledBookings';
 export { default as RenterCancelledBookings } from './RenterCancelledBookings';

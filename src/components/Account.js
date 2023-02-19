@@ -90,71 +90,77 @@ function Account() {
               )}`}
             <Identicon account={data.account} />
           </Button>
-          <Modal show={show} onHide={handleClose}
-              style={{
-                opacity: "1",
-                backgroundColor: "rgba(0, 0, 0, 0.7)"
-              }}>
-                <div style={{
-                    backgroundColor:"rgba(0, 0, 0, 0.4)",
-                    boxShadow: "rgba(0, 0, 0, 1) 5px 15px 15px"}}>
-                <Modal.Header closeButton 
-            style={{ 
-              backgroundColor: "rgba(1, 1, 1)"
-              }}>
-              <Modal.Title>Account information</Modal.Title>
-            </Modal.Header>
-            <Modal.Body style={{ 
-              backgroundColor: "rgba(1, 1, 1)"
-              }}>
-              <p>Wallet address : {data.account}</p>
-              <p>
-                Your account balance :{" "}
-                {data.balance && parseFloat(data.balance).toFixed(4)}{" "}
-              </p>
-              <p>Your're connect to : {data.network} </p>
-            {/* </Modal.Body> */}
-            <div class="footer">
-            <Dropdown>
-                <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
-                  Rentals
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/your-rentals">
-                    Your Rentals
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/add-rental">
-                    Add new rental
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/renter-cancelled-booking">
-                    List cancelled bookings
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              &nbsp;
-              <Dropdown>
-                <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
-                  Bookings
-                </Dropdown.Toggle>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+              <Modal.Header
+                closeButton
+                style={{
+                  backgroundColor: "rgba(1, 1, 1, 0.1)",
+                }}
+              >
+              <Modal.Title>Account Information</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>Wallet address : {data.account}</p>
+                <p>
+                  Your account balance :{" "}
+                  {data.balance && parseFloat(data.balance).toFixed(4)}{" "}
+                </p>
+                <p>Your're connect to : {data.network} </p>
+                
+                <div class="footer">
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      variant="outline-primary"
+                      id="dropdown-basic"
+                    >
+                      Rentals
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/your-rentals">
+                        Your Rentals
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/add-rental">
+                        Add new rental
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/renter-cancelled-booking">
+                        List cancelled bookings
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  &nbsp;
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      variant="outline-success"
+                      id="dropdown-basic"
+                    >
+                      Bookings
+                    </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/booked-schedules">
-                    Your booking schedules
-                    </Dropdown.Item>
-                  <Dropdown.Item href="#/user-cancelled-booking">
-                    Your cancelled bookings
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              &nbsp;
-              <a className="btn btn-outline-danger" onClick={Disconnect} role="button">
-                Disconnect
-              </a>
-            </div>
-              
-            </Modal.Body>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/booked-schedules">
+                        Your booking schedules
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/user-cancelled-booking">
+                        Your cancelled bookings
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  &nbsp;
+                  <a
+                    className="btn btn-outline-danger"
+                    onClick={Disconnect}
+                    role="button"
+                  >
+                    Disconnect
+                  </a>
                 </div>
-            
+              </Modal.Body>
           </Modal>
         </>
       ) : (
